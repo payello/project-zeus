@@ -28,10 +28,9 @@ export default function Login({
         });
     };
 
-    const updateRemember = (checked) => {
-        console.log({checked});
+    const updateRemember = (checked: boolean): void => {
         setData('remember', checked)
-    }
+    };
 
     return (
         <GuestLayout>
@@ -82,8 +81,7 @@ export default function Login({
                         <Checkbox
                             name="remember"
                             checked={data.remember}
-                            onChange={(e) => updateRemember(e)
-                            }
+                            onChange={(e) => updateRemember(e.target.checked)}
                         />
                         <span className="ms-2 text-sm text-gray-600">
                             Remember me
