@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('document_framework', function (Blueprint $table) {
+        Schema::create('document_framework', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('document_id')->constrained()->onDelete('cascade');
-            $table->foreignId('framework_id')->constrained()->onDelete('cascade');
+
+            $table->unsignedBigInteger('document_id');
+            $table->unsignedBigInteger('framework_id');
+
+            $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
+            $table->foreign('framework_id')->references('id')->on('frameworks')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -24,11 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('document_framework', function (Blueprint $table) {
-            $table->dropForeign(['document_id']);
-            $table->dropForeign(['framework_id']);
-
-            $table->dropColumn(['id', 'document_id', 'framework_id', 'created_at', 'updated_at']);
-        });
+        Schema::dropIfExists('document_framework');
     }
 };

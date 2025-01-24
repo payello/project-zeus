@@ -13,10 +13,24 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('role')->nullable();
+            $table->string('country')->nullable();
+            $table->date('teacher_since')->nullable();
+            $table->boolean('is_contributor')->default(false);
+            $table->boolean('is_admin')->default(false);
+            $table->string('profile_pic')->nullable()->unique();
+            $table->string('phone')->nullable();
+            $table->string('phone_country')->nullable();
+            $table->string('type')->nullable();
+            $table->text('about')->nullable();
+            $table->string('qualifications')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('website')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -47,3 +61,8 @@ return new class extends Migration
         Schema::dropIfExists('sessions');
     }
 };
+
+// subscription_type
+// active
+// subscription_start
+// subscription_end
