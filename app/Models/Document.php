@@ -12,7 +12,13 @@ class Document extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description'];
+    protected $fillable = [
+        'filename',
+        'title',
+        'type',
+        'format',
+        'author_id',
+    ];
 
     public function frameworks(): HasMany
     {

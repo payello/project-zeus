@@ -11,7 +11,7 @@ class Framework extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['framework_name', 'framework_description'];
 
     public function documents(): BelongsToMany
     {
